@@ -1,0 +1,23 @@
+#!/bin/bash
+
+# ضروري للسماح بالتنفيذ كسكربت CGI
+echo "Content-type: text/plain"
+echo ""
+
+# قراءة بيانات الـ POST
+read POST_STRING
+
+# تحليل الباراميترز
+USERNAME=$(echo $POST_STRING | sed -n 's/.*username=\([^&]*\).*/\1/p' | sed 's/+/ /g' | sed 's/%40/@/')
+PASSWORD=$(echo $POST_STRING | sed -n 's/.*password=\([^&]*\).*/\1/p' | sed 's/+/ /g')
+
+# دي بيانات دخول تجريبية، عدّلها حسب المطلوب
+VALID_USERNAME="sultan"
+VALID_PASSWORD="123456"
+
+# تحقق من البيانات
+if [ "$USERNAME" = "$VALID_USERNAME" ] && [ "$PASSWORD" = "$VALID_PASSWORD" ]; then
+    echo "Auth: 1"
+else
+    echo "Auth: 0"
+fi

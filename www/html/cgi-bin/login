@@ -1,0 +1,14 @@
+#!/bin/bash
+
+echo "Content-type: text/html"
+echo ""
+
+# تعيين متغيرات وهمية
+USERURL=$(echo $QUERY_STRING | sed -n 's/.*userurl=\([^&]*\).*/\1/p')
+REDIRECTURL=${USERURL:-http://10.0.0.1/accounts/success.html}
+
+# رد فيه تحويل
+echo "Status: 302 Found"
+echo "Location: $REDIRECTURL"
+echo ""
+

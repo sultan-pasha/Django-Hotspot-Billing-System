@@ -1,0 +1,37 @@
+[Unit]
+Description=Start CoovaChilli with --nochallenge
+After=network.target
+
+[Service]
+Type=forking
+ExecStart=/usr/sbin/chilli --nochallenge
+Environment="HS_WANIF=ens18"
+Environment="HS_LANIF=ens19"
+Environment="HS_NETWORK=10.0.0.0"
+Environment="HS_NETMASK=255.255.0.0"
+Environment="HS_UAMLISTEN=10.0.0.1"
+Environment="HS_UAMPORT=3990"
+Environment="HS_UAMUIP=10.0.0.1"
+Environment="HS_UAMUIPORT=4990"
+Environment="HS_RADIUS=127.0.0.1"
+Environment="HS_RADSECRET=testing123"
+Environment="papalwaysok=1"
+Environment="HS_NOCHALLENGE=1"
+Environment="HS_UAMSERVER=http://10.0.0.1"
+Environment="HS_UAMFORMAT=http://10.0.0.1/accounts/login/"
+Environment="HS_UAMHOMEPAGE=http://10.0.0.1:3990/www/coova.html"
+Environment="HS_MODE=hotspot"
+Environment="HS_TYPE=chillispot"
+Environment="HS_WWWDIR=/etc/chilli/www"
+Environment="HS_WWWBIN=/etc/chilli/www/cgi-bin"
+Environment="HS_DNS1=8.8.8.8"
+Environment="HS_DNS2=8.8.4.4"
+Environment="DEFROUTE=ens18"
+Environment="HS_UAMALLOW=10.0.0.1,8.8.8.8,8.8.4.4"
+Environment="HAS_NAT=1"
+
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
+

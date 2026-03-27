@@ -1,0 +1,6 @@
+<h2>تسجيل مستخدم جديد</h2>
+<form method='POST'>
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">إِشتراك</button>
+</form>

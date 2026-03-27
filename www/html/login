@@ -1,0 +1,34 @@
+#!/bin/bash
+
+echo "Content-type: text/html"
+echo ""
+
+# نقرأ بيانات الـ POST
+read -n "$CONTENT_LENGTH" POST_DATA
+
+# استخراج القيم
+username=$(echo "$POST_DATA" | sed -n 's/.*username=\([^&]*\).*/\1/p' | sed 's/+/ /g' | sed 's/%40/@/g')
+password=$(echo "$POST_DATA" | sed -n 's/.*password=\([^&]*\).*/\1/p' | sed 's/+/ /g')
+challenge=$(echo "$POST_DATA" | sed -n 's/.*challenge=\([^&]*\).*/\1/p')
+uamip=$(echo "$POST_DATA" | sed -n 's/.*uamip=\([^&]*\).*/\1/p')
+uamport=$(echo "$POST_DATA" | sed -n 's/.*uamport=\([^&]*\).*/\1/p')
+userurl=$(echo "$POST_DATA" | sed -n 's/.*userurl=\([^&]*\).*/\1/p')
+
+# تشفير كلمة المرور باستخدام الـ challenge
+hexchal=$(printf "%s" "$challenge" | xxd -r -p | hexdump -e '16/1 "%02x"')
+ppassword=$(echo -n "$password" | xxd -p)
+response=$(echo -n "$hexchal$ppassword" | xxd -r -p | md5sum | cut -d ' ' -f 1)
+
+# إرسال الطلب إلى CoovaChilli
+redirect_url="http://$uamip:$uamport/cgi-bin/auth"
+auth_url="$redirect_url?username=$username&response=$response&userurl=$userurl&challenge=$challenge"
+
+# إعادة التوجيه إلى URL المصادقة
+echo "<html>"
+echo "<head>"
+echo "<meta http-equiv='refresh' content='0;url=$auth_url' />"
+echo "</head>"
+echo "<body>"
+echo "Logging in..."
+echo "</body>"
+echo "</html>"
