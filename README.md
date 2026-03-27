@@ -94,7 +94,7 @@ sinkrow-hotspot/
 
 ## 📸 Project Showcase
 
-#[https://drive.google.com/file/d/1RsXctbVS5dC2IZMZFRnddEyfwNXX04ev/view?usp=sharing]
+![img](https://drive.google.com/u/0/drive-viewer/AKGpihYs2_Adv1ukg9ig6zAeu5-41fG57EqdB-Bl1YPSGxIozpdARicSMFgVj_pHP9rnmUW9412Ux_MJcvhpHyJO4ch1oIuzN_Bjs9Y=s1600-rw-v1?auditContext=forDisplay)
 
 ---
 
