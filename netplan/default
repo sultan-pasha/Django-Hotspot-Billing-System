@@ -12,11 +12,11 @@
 
 HS_WANIF=ens18            # WAN Interface toward the Internet
 HS_LANIF=ens19		   # Subscriber Interface for client devices
-HS_NETWORK=192.168.182.0	   # HotSpot Network (must include HS_UAMLISTEN)
+HS_NETWORK=fake   # HotSpot Network (must include HS_UAMLISTEN)
 HS_NETMASK=255.255.255.0   # HotSpot Network Netmask
-HS_UAMLISTEN=192.168.182.1	   # HotSpot IP Address (on subscriber network)
-HS_UAMPORT=3990            # HotSpot UAM Port (on subscriber network)
-HS_UAMUIPORT=4990          # HotSpot UAM "UI" Port (on subscriber network, for embedded portal)
+HS_UAMLISTEN=fake	   # HotSpot IP Address (on subscriber network)
+HS_UAMPORT=any          # HotSpot UAM Port (on subscriber network)
+HS_UAMUIPORT=any          # HotSpot UAM "UI" Port (on subscriber network, for embedded portal)
 
 # HS_DYNIP=
 # HS_DYNIP_MASK=255.255.255.0
@@ -66,7 +66,7 @@ HS_UAMALIASNAME=chilli
 # HS_NASMAC=<mac address>  # To explicitly set Called-Station-Id
 # HS_NASIP=<ip address>    # To explicitly set NAS-IP-Address
 
-HS_UAMSERVER=http://192.168.182.1
+HS_UAMSERVER=http://fake
 
 #   Use HS_UAMFORMAT to define the actual captive portal url.
 #   Shell variable replacement takes place when evaluated, so here
